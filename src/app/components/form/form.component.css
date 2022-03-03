@@ -10,7 +10,7 @@
     z-index: 0;
   }
   
-  .heading .logo, .heading .subtitle, .foto, img, .datos{
+  .heading .logo, .heading .subtitle, .foto, img, .datos,.logoClub,.rfc{
     position: absolute;
   }
   
@@ -21,7 +21,7 @@
     font-size: 1cm;
   }
   
-  .datos, .heading .subtitle{
+  .datos, .heading .subtitle, .rfc{
     list-style: none;
   }
   
@@ -32,6 +32,13 @@
     font-weight: 600;
     left: 3.5cm;
     top: 3.2cm;
+    letter-spacing: 0.1mm
+  }
+  .rfc{
+   
+    bottom: 0.2cm;
+    font-size: 0.42cm;
+    font-weight: 600;
     letter-spacing: 0.1mm
   }
   
@@ -61,3 +68,8 @@
     left: .5cm;
     background-color: white;
   }
+  .logoClub{
+    top: 1cm;
+    right: 3.5cm;
+  }
+  

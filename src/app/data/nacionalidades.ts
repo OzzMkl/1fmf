@@ -1,55 +1,55 @@
 export const nacionalidades = [{
-                            id : 1,
+                            idN : 1,
                             nombre : 'Mexicana',
                             continente : 'América'
                         },
                         {
-                            id : 2,
+                            idN : 2,
                             nombre : 'Francesa',
                             continente : 'Europa'
                         },
                         {
-                            id : 3,
+                            idN : 3,
                             nombre : 'Argentina',
                             continente : 'América'
                         },
                         {
-                            id : 4,
+                            idN : 4,
                             nombre : 'Inglesa',
                             continente : 'Europa'
                         },
                         {
-                            id : 5,
+                            idN : 5,
                             nombre : 'Alemana',
                             continente : 'Europa'
                         },
                         {
-                            id : 6,
+                            idN : 6,
                             nombre : 'Brasileña',
                             continente : 'América'
                         },
                         {
-                            id : 7,
+                            idN : 7,
                             nombre : 'Nigeriana',
                             continente : 'África'
                         },
                         {
-                            id : 8,
+                            idN : 8,
                             nombre : 'Australia',
                             continente : 'Oceanía'
                         },
                         {
-                            id : 9,
+                            idN : 9,
                             nombre : 'Japón',
                             continente : 'Asia'
                         },
                         {
-                            id : 10,
+                            idN : 10,
                             nombre : 'Corea del Sur',
                             continente : 'Asia'
                         },
                         {
-                            id : 11,
+                            idN : 11,
                             nombre : 'Costa de Marfil',
                             continente : 'África'
                         }]
