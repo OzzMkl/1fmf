@@ -1,0 +1,136 @@
+<div class="container">
+    <form [formGroup]="formFMF">
+        <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
+    
+            <ng-wizard-step [title]="'Informacion General'" [description]="'Hey! dinos como te llamas?'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                <br>
+                <div class="row align-items-start">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="text" id="name" [class.is-invalid]="formFMF.get('name').touched && formFMF.get('name').invalid" class="form-control" formControlName="name">
+                            <label for="name">Nombre</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="text" id="firstLastName" [class.is-invalid]="formFMF.get('firstLastName').touched && formFMF.get('firstLastName').invalid" class="form-control" class="form-control" formControlName="firstLastName">
+                            <label for="firstLastName">Apellido paterno</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="text" id="secondLastName" [class.is-invalid]="formFMF.get('secondLastName').touched && formFMF.get('secondLastName').invalid" class="form-control" formControlName="secondLastName">
+                            <label for="secondLastName">Apellido materno</label>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </ng-wizard-step>
+            
+            <ng-wizard-step [title]="'Cuentanos un poco mas de ti'" [description]="'Te queremos conocer mas!'">
+                <br>
+                <div class="row align-items-start">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+                            <label for="birthdate">Fecha de nacimiento</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <select id="gender"  class="form-select" formControlName="gender">
+                                <option selected disabled value="">Abrir para seleccionar</option>
+                                <option *ngFor="let g of genders" value="{{g.nombre}}">{{g.nombre}}</option>
+                            </select>
+                            <label for="gender">Selecciona tu genero</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <select id="nationality"  class="form-select" formControlName="nationality">
+                                <option selected disabled value="">Abrir para seleccionar</option>
+                                <option *ngFor="let n of nationalities" value="{{n.nombre}}">{{n.nombre}}</option>
+                            </select>
+                            <label for="nationality">Selecciona tu nacionalidad</label>
+                        </div>
+                    </div>
+                </div>
+            </ng-wizard-step>
+            
+            <ng-wizard-step [title]="'Ya casi terminamos'" [description]="'Que club te gusta y a que te dedicas?'" [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                <br>
+                <div class="row align-items-start">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <select id="club"  class="form-select" formControlName="club">
+                                <option selected disabled value="">Abrir para seleccionar</option>
+                                <option *ngFor="let c of clubs" value="{{c.nombre}}">{{c.nombre}}</option>
+                            </select>
+                            <label for="club">Selecciona tu nacionalidad</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="text" id="ocupation" [class.is-invalid]="formFMF.get('ocupation').touched && formFMF.get('ocupation').invalid" class="form-control" formControlName="ocupation">
+                            <label for="ocupation">Ocupacion</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input type="text" id="rfc" class="form-control" formControlName="rfc">
+                            <label for="rfc">RFC</label>
+                        </div>
+                    </div>
+                    
+                </div>
+            </ng-wizard-step>
+        
+            <ng-wizard-step [title]="'Sorpresa!'" [description]="'Una tarjeta muy mona!'">
+                <!--  -->
+                <div class="container">
+                    <br>
+                    <div class="credencial">
+                        <div class="heading">
+                            <br>
+                          <h1 class="logo"><strong>{{this.formFMF.get('club').value}}</strong></h1>
+                        </div>
+                        
+                        <div class="foto">
+                          
+                        </div>
+                        
+                         <img src="assets/img/logo_fmf.png" alt="logo fmf">
+                        
+                      
+                        <ul class="datos">
+                            <li>
+                                {{this.formFMF.get('name').value}} {{this.formFMF.get('firstLastName').value}} {{this.formFMF.get('secondLastName').value}} 
+                            </li>
+                        
+                            <li>
+                               Genero: {{this.formFMF.get('gender').value}}
+                            </li>
+                            <li>
+                               Nacionalidad: {{this.formFMF.get('nationality').value}}
+                            </li>
+                            <li>
+                               Ocupacion: {{this.formFMF.get('ocupation').value}}
+                            </li>
+                        </ul>
+                            
+                          
+                      </div>
+                </div>
+               
+                <!--  -->
+            </ng-wizard-step>
+        
+        </ng-wizard>
+    </form>
+    {{formFMF.value | json}}
+    <br>
+    {{this.formFMF.get('birthdate').value}}
+    <br>
+    {{age2}}
+</div>

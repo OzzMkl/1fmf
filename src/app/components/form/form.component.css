@@ -1,0 +1,63 @@
+.credencial{
+    color: #0059a5;
+    font-family: 'Source Sans Pro';
+    background-color: #cecece;
+    width: 12.56cm;
+    height: 9.398cm;
+    position: relative;
+    border-radius: 10px;
+      overflow: hidden;
+    z-index: 0;
+  }
+  
+  .heading .logo, .heading .subtitle, .foto, img, .datos{
+    position: absolute;
+  }
+  
+  .heading .logo {
+    letter-spacing: -0.4mm;
+    /* top: -0.7cm; */
+    left: 2cm;
+    font-size: 1cm;
+  }
+  
+  .datos, .heading .subtitle{
+    list-style: none;
+  }
+  
+  .datos{
+    color: #000000;
+    bottom: 0.2cm;
+    font-size: 0.42cm;
+    font-weight: 600;
+    left: 3.5cm;
+    top: 3.2cm;
+    letter-spacing: 0.1mm
+  }
+  
+  .heading .subtitle{
+    font-size: 2.6mm;
+    left: 2cm;
+    line-height: 3mm;
+    font-weight: 600;
+    color: #000000;
+    
+  }
+  
+  img{
+    opacity: 40%;  
+     top: 62%;      
+     transform: translate(180.5%, -32.2%) scale(1);
+    z-index: -1;
+  }
+  
+  
+  
+  .foto{
+    height: 4.5cm;
+    width: 3cm;
+    /* right: 0.2mm; */
+    top: 3cm;
+    left: .5cm;
+    background-color: white;
+  }
