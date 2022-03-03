@@ -3,79 +3,82 @@
         <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
     
             <ng-wizard-step [title]="'Formulario'" [description]="'Aqui vas a proporcionar tu informacion'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-                <form [formGroup]="formFMF" (ngSubmit)="onSubmit()">
+                <form [formGroup]="formFMF" (ngSubmit)="onSubmit()" >
                 <br>
-                <div class="row align-items-start">
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="text" id="name" [class.is-invalid]="formFMF.get('name').touched && formFMF.get('name').invalid" class="form-control" formControlName="name">
-                            <label for="name">Nombre</label>
+                <div id="htmlData">
+                    <div class="row align-items-start">
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" id="name" [class.is-invalid]="formFMF.get('name').touched && formFMF.get('name').invalid" class="form-control" formControlName="name">
+                                <label for="name">Nombre</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" id="firstLastName" [class.is-invalid]="formFMF.get('firstLastName').touched && formFMF.get('firstLastName').invalid" class="form-control" class="form-control" formControlName="firstLastName">
+                                <label for="firstLastName">Apellido paterno</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" id="secondLastName" [class.is-invalid]="formFMF.get('secondLastName').touched && formFMF.get('secondLastName').invalid" class="form-control" formControlName="secondLastName">
+                                <label for="secondLastName">Apellido materno</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="text" id="firstLastName" [class.is-invalid]="formFMF.get('firstLastName').touched && formFMF.get('firstLastName').invalid" class="form-control" class="form-control" formControlName="firstLastName">
-                            <label for="firstLastName">Apellido paterno</label>
+                    <br>
+                    <div class="row align-items-start">
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+                                <label for="birthdate">Fecha de nacimiento</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <select id="idGender"  class="form-select" formControlName="idGender">
+                                    <option selected disabled value="">Abrir para seleccionar</option>
+                                    <option *ngFor="let g of genders" value="{{g.id}}">{{g.nombre}}</option>
+                                </select>
+                                <label for="idGender">Selecciona tu genero</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <select id="idNationality"  class="form-select" formControlName="idNationality">
+                                    <option selected disabled value="">Abrir para seleccionar</option>
+                                    <option *ngFor="let n of nationalities" value="{{n.idN}}">{{n.nombre}}</option>
+                                </select>
+                                <label for="idNationality">Selecciona tu nacionalidad</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="text" id="secondLastName" [class.is-invalid]="formFMF.get('secondLastName').touched && formFMF.get('secondLastName').invalid" class="form-control" formControlName="secondLastName">
-                            <label for="secondLastName">Apellido materno</label>
+                    <br>
+                    <div class="row align-items-start">
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <select id="idClub"  class="form-select" formControlName="idClub">
+                                    <option selected disabled value="">Abrir para seleccionar</option>
+                                    <option *ngFor="let c of clubs" value="{{c.id}}">{{c.nombre}}</option>
+                                </select>
+                                <label for="idClub">Selecciona tu club</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" id="ocupation" [class.is-invalid]="formFMF.get('ocupation').touched && formFMF.get('ocupation').invalid" class="form-control" formControlName="ocupation">
+                                <label for="ocupation">Ocupacion</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-floating">
+                                <input type="text" id="rfc" class="form-control" formControlName="rfc">
+                                <label for="rfc">RFC</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="row align-items-start">
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
-                            <label for="birthdate">Fecha de nacimiento</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <select id="idGender"  class="form-select" formControlName="idGender">
-                                <option selected disabled value="">Abrir para seleccionar</option>
-                                <option *ngFor="let g of genders" value="{{g.id}}">{{g.nombre}}</option>
-                            </select>
-                            <label for="idGender">Selecciona tu genero</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <select id="idNationality"  class="form-select" formControlName="idNationality">
-                                <option selected disabled value="">Abrir para seleccionar</option>
-                                <option *ngFor="let n of nationalities" value="{{n.idN}}">{{n.nombre}}</option>
-                            </select>
-                            <label for="idNationality">Selecciona tu nacionalidad</label>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row align-items-start">
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <select id="idClub"  class="form-select" formControlName="idClub">
-                                <option selected disabled value="">Abrir para seleccionar</option>
-                                <option *ngFor="let c of clubs" value="{{c.id}}">{{c.nombre}}</option>
-                            </select>
-                            <label for="idClub">Selecciona tu club</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="text" id="ocupation" [class.is-invalid]="formFMF.get('ocupation').touched && formFMF.get('ocupation').invalid" class="form-control" formControlName="ocupation">
-                            <label for="ocupation">Ocupacion</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="form-floating">
-                            <input type="text" id="rfc" class="form-control" formControlName="rfc">
-                            <label for="rfc">RFC</label>
-                        </div>
-                    </div>
-                </div>
+               
                 <br>
                 <button type="submit" class="btn btn-success">Guardar</button>
             </form>
@@ -83,7 +86,7 @@
             
             <ng-wizard-step [title]="'Creacion de credencial'" [description]="'Pero mira que hicimos con tus datos!'">
                 <!--  -->
-                <div class="container">
+                <div class="container" id="htmlData">
                     <br>
                     <div class="credencial">
                         <div class="heading">
@@ -114,11 +117,14 @@
                                Ocupacion: {{ocu}}
                             </li>
                         </ul>
-                        <ul class="rfc">
+                        <ul *ngIf="rfcx?.length > 0; else elseBlock" class="rfc">
                             <li>
                                 RFC: {{rfcx}}
                             </li>
                         </ul>
+                        <ng-template #elseBlock>
+
+                        </ng-template>
                       </div>
                 </div>
                
@@ -126,7 +132,9 @@
             </ng-wizard-step>
             
             <ng-wizard-step [title]="'Generacion de PDF'" [description]="'Vamos a imprimir tus datos!'" [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
-                
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-success btn-block" (click)="downloadPDF()">Download PDF</button>
+                </div>
             </ng-wizard-step>
         
         
