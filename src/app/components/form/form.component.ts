@@ -14,9 +14,7 @@ import { clubes } from 'src/app/data/clubes';
 import { Club } from 'src/app/models/club';
 //Pdf
 import jsPDF from 'jspdf'
-import html2canvas from 'html2canvas';
-
-
+//import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -32,12 +30,15 @@ export class FormComponent implements OnInit {
   public clubs : any;
   //variables para la credencial
   public fullName:string ='';
-  public age:string;
+  public age: any;
+  public age2:any;
   public gender:Genero;
   public nationality: Nacionalidad;
   public club: Club;
   public ocu: string;
   public rfcx: string;
+  //patern
+  rfcPattern: any = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
 
   
 
@@ -49,7 +50,7 @@ export class FormComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log(this.genders);
+    
   }
 
   //Reactive Form
@@ -62,12 +63,13 @@ export class FormComponent implements OnInit {
     idNationality : new FormControl('',Validators.required),
     idClub : new FormControl('',Validators.required),
     ocupation : new FormControl('',Validators.required),
-    rfc : new FormControl('')//No es requerido ya que dependemos de la edad del usuario
+    rfc : new FormControl('', Validators.pattern(this.rfcPattern))//No es requerido ya que dependemos de la edad del usuario
   })
 
-
+//Capturar formulario
 onSubmit(){
-  //concatenamos el nombre
+  if(this.formFMF.valid){
+    //concatenamos el nombre
   this.fullName = this.formFMF.get('name').value +' '+this.formFMF.get('firstLastName').value +' '+ this.formFMF.get('secondLastName').value;
   //buscamos el id para traer la informacion completa del modelo
   this.gender = this.genders.find(element => element.id == this.formFMF.get('idGender').value);
@@ -77,52 +79,39 @@ onSubmit(){
   this.age = this.formFMF.get('birthdate').value;
   this.ocu = this.formFMF.get('ocupation').value;
   this.rfcx = this.formFMF.get('rfc').value;
-
-}
-
-
-downloadPDF() {
-  // Extraemos el
-  const DATA = document.getElementById('htmlData');
-  const doc = new jsPDF('p', 'pt', 'a4');
-  const options = {
-    background: 'white',
-    scale: 3
-  };
-  html2canvas(DATA, options).then((canvas) => {
-
-    const img = canvas.toDataURL('image/PNG');
-
-    // Add image Canvas to PDF
-    const bufferX = 15;
-    const bufferY = 15;
-    const imgProps = (doc as any).getImageProperties(img);
-    const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-    doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-    return doc;
-  }).then((docResult) => {
-    docResult.save(`${new Date().toISOString()}_tutorial.pdf`);
-  });
-}
-
-
-// public downloadPDF(): void {
-
-
-//   const doc = new jsPDF();
-   
+  }else{
+    console.log('No valido')
+  }
   
-//    doc.text('Estos son tus datos!', 10, 10);
-//    doc.text('Nombre: '+this.fullName, 10, 20);
-//    doc.text('Fecha de nacimiento: '+this.age, 10, 30);
-//    doc.text('Genero: '+this.gender.nombre, 10, 40);
-//    doc.text('Nacionalidad: '+this.nationality.nombre, 10, 50);
-//    doc.text('Club seleccionado: '+this.club.nombre, 10, 60);
-//    doc.text('Ocupacion: '+this.ocu, 10, 70);
-//    doc.text('RFC: '+this.rfcx, 10, 80);
-//    doc.save('MisDatos.pdf');
-// }
+
+}
+
+
+onChange(e:any){//evento que muestra los datos del proveedor al seleccionarlo
+  var hoy = new Date();
+  this.age = new Date(this.formFMF.get('birthdate').value);
+  this.age2 = hoy.getFullYear() - this.age.getFullYear();
+  var m = hoy.getMonth() - this.age.getMonth();
+  if(m<0 || (m === 0 && hoy.getDate() < this.age.getDate())){
+      this.age2--;
+  }
+  return this.age2;
+  
+}
+//descarga del pdf
+ public downloadPDF(): void {
+   const doc = new jsPDF();//inicializamos
+   //vamos asignando por linea
+    doc.text('Estos son tus datos!', 10, 10);
+    doc.text('Nombre: '+this.fullName, 10, 20);
+    doc.text('Fecha de nacimiento: '+this.age, 10, 30);
+    doc.text('Genero: '+this.gender.nombre, 10, 40);
+    doc.text('Nacionalidad: '+this.nationality.nombre, 10, 50);
+    doc.text('Club seleccionado: '+this.club.nombre, 10, 60);
+    doc.text('Ocupacion: '+this.ocu, 10, 70);
+    doc.text('RFC: '+this.rfcx, 10, 80);
+    doc.save('MisDatos.pdf');
+ }
 
 
 

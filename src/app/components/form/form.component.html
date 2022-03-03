@@ -12,25 +12,34 @@
                                 <input type="text" id="name" [class.is-invalid]="formFMF.get('name').touched && formFMF.get('name').invalid" class="form-control" formControlName="name">
                                 <label for="name">Nombre</label>
                             </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="formFMF.get('name').invalid && formFMF.get('name').touched">
+                                El nombre es requerido
+                              </div>
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
                                 <input type="text" id="firstLastName" [class.is-invalid]="formFMF.get('firstLastName').touched && formFMF.get('firstLastName').invalid" class="form-control" class="form-control" formControlName="firstLastName">
                                 <label for="firstLastName">Apellido paterno</label>
                             </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="formFMF.get('firstLastName').invalid && formFMF.get('firstLastName').touched">
+                                El Apellido paterno es requerido
+                              </div>
                         </div>
                         <div class="col-4">
                             <div class="form-floating">
                                 <input type="text" id="secondLastName" [class.is-invalid]="formFMF.get('secondLastName').touched && formFMF.get('secondLastName').invalid" class="form-control" formControlName="secondLastName">
                                 <label for="secondLastName">Apellido materno</label>
                             </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="formFMF.get('secondLastName').invalid && formFMF.get('secondLastName').touched">
+                                El Apellido materno es requerido
+                              </div>
                         </div>
                     </div>
                     <br>
                     <div class="row align-items-start">
                         <div class="col-4">
                             <div class="form-floating">
-                                <input type="date" id="birthdate" class="form-control" formControlName="birthdate">
+                                <input type="date" id="birthdate" class="form-control" formControlName="birthdate" (ngModelChange)="onChange($event)">
                                 <label for="birthdate">Fecha de nacimiento</label>
                             </div>
                         </div>
@@ -69,18 +78,24 @@
                                 <input type="text" id="ocupation" [class.is-invalid]="formFMF.get('ocupation').touched && formFMF.get('ocupation').invalid" class="form-control" formControlName="ocupation">
                                 <label for="ocupation">Ocupacion</label>
                             </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="formFMF.get('ocupation').invalid && formFMF.get('ocupation').touched">
+                                Tu ocupacion es requerida
+                              </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" *ngIf="age2 > 18">
                             <div class="form-floating">
                                 <input type="text" id="rfc" class="form-control" formControlName="rfc">
                                 <label for="rfc">RFC</label>
                             </div>
+                            <div class="alert alert-danger" role="alert" *ngIf="formFMF.get('rfc').touched && formFMF.get('rfc').invalid && formFMF.get('rfc').errors.pattern">
+                                Algo salio mal revisa tu RFC
+                              </div>
                         </div>
                     </div>
                 </div>
                
                 <br>
-                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="submit" class="btn btn-success" [disabled]="!formFMF.valid">Guardar</button>
             </form>
             </ng-wizard-step>
             
