@@ -2,7 +2,8 @@
     <form [formGroup]="formFMF">
         <ng-wizard [config]="config" (stepChanged)="stepChanged($event)">
     
-            <ng-wizard-step [title]="'Informacion General'" [description]="'Hey! dinos como te llamas?'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <ng-wizard-step [title]="'Formulario'" [description]="'Aqui vas a proporcionar tu informacion'" [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+                <form [formGroup]="formFMF" (ngSubmit)="onSubmit()">
                 <br>
                 <div class="row align-items-start">
                     <div class="col-4">
